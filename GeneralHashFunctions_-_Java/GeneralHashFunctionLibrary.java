@@ -9,9 +9,8 @@
  *                                                                        *
  * Copyright notice:                                                      *
  * Free use of the General Purpose Hash Function Algorithms Library is    *
- * permitted under the guidelines and in accordance with the most current *
- * version of the Common Public License.                                  *
- * http://www.opensource.org/licenses/cpl1.0.php                          *
+ * permitted under the guidelines and in accordance with the MIT License. *
+ * http://www.opensource.org/licenses/MIT                                 *
  *                                                                        *
  **************************************************************************
 */
@@ -19,7 +18,6 @@
 
 class GeneralHashFunctionLibrary
 {
-
 
    public long RSHash(String str)
    {

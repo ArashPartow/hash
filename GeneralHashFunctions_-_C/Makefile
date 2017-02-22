@@ -1,15 +1,15 @@
 #
-# General Hash Function Algorithms Master MakeFile
+# General Hash Function Algorithms
 # By Arash Partow - 2000
 #
 # URL: http://www.partow.net/programming/hashfunctions/index.html
 #
 # Copyright Notice:
 # Free use of this library is permitted under the
-# guidelines and in accordance with the most
-# current version of the Common Public License.
-# http://www.opensource.org/licenses/cpl1.0.php
+# guidelines and in accordance with the MIT License.
+# http://www.opensource.org/licenses/MIT
 #
+
 
 COMPILER      = -cc
 OPTIONS       = -std=c99 -pedantic -Wall -o

@@ -8,9 +8,8 @@
 (*                                                                        *)
 (* Copyright notice:                                                      *)
 (* Free use of the General Purpose Hash Function Algorithms Library is    *)
-(* permitted under the guidelines and in accordance with the most current *)
-(* version of the Common Public License.                                  *)
-(* http://www.opensource.org/licenses/cpl1.0.php                          *)
+(* permitted under the guidelines and in accordance with the MIT License. *)
+(* http://www.opensource.org/licenses/MIT                                 *)
 (*                                                                        *)
 (**************************************************************************)
 
@@ -31,7 +30,7 @@ function BKDRHash (const Str : String) : Cardinal;
 function SDBMHash (const Str : String) : Cardinal;
 function DJBHash  (const Str : String) : Cardinal;
 function DEKHash  (const Str : String) : Cardinal;
-function HRHash   (const Str : String) : Cardinal;
+function BPHash   (const Str : String) : Cardinal;
 function FNVHash  (const Str : String) : Cardinal;
 function APHash   (const Str : String) : Cardinal;
 
@@ -170,7 +169,7 @@ begin
   Result := 0;
   for i := 1 to Length(Str) do
   begin
-    Result := hash shl 7 xor Ord(Str[i]);
+    Result := Result shl 7 xor Ord(Str[i]);
   end;
 end;
 (* End Of BP Hash function *)
