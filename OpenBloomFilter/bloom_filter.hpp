@@ -22,6 +22,7 @@
 #include <algorithm>
 #include <cmath>
 #include <cstddef>
+#include <cstdlib>
 #include <iterator>
 #include <limits>
 #include <string>
@@ -263,7 +264,7 @@ public:
 
       for (std::size_t i = 0; i < salt_.size(); ++i)
       {
-         compute_indices(hash_ap(key_begin, length, salt_[i]), bit_index,bit);
+         compute_indices(hash_ap(key_begin, length, salt_[i]), bit_index, bit);
 
          bit_table_[bit_index / bits_per_char] |= bit_mask[bit];
       }
@@ -271,7 +272,7 @@ public:
       ++inserted_element_count_;
    }
 
-   template<typename T>
+   template <typename T>
    inline void insert(const T& t)
    {
       // Note: T must be a C++ POD type.
@@ -288,7 +289,7 @@ public:
       insert(reinterpret_cast<const unsigned char*>(data),length);
    }
 
-   template<typename InputIterator>
+   template <typename InputIterator>
    inline void insert(const InputIterator begin, const InputIterator end)
    {
       InputIterator itr = begin;
@@ -306,7 +307,7 @@ public:
 
       for (std::size_t i = 0; i < salt_.size(); ++i)
       {
-         compute_indices(hash_ap(key_begin, length, salt_[i]), bit_index,bit);
+         compute_indices(hash_ap(key_begin, length, salt_[i]), bit_index, bit);
 
          if ((bit_table_[bit_index / bits_per_char] & bit_mask[bit]) != bit_mask[bit])
          {
@@ -317,7 +318,7 @@ public:
       return true;
    }
 
-   template<typename T>
+   template <typename T>
    inline bool contains(const T& t) const
    {
       return contains(reinterpret_cast<const unsigned char*>(&t),static_cast<std::size_t>(sizeof(T)));
@@ -333,7 +334,7 @@ public:
       return contains(reinterpret_cast<const unsigned char*>(data),length);
    }
 
-   template<typename InputIterator>
+   template <typename InputIterator>
    inline InputIterator contains_all(const InputIterator begin, const InputIterator end) const
    {
       InputIterator itr = begin;
@@ -351,7 +352,7 @@ public:
       return end;
    }
 
-   template<typename InputIterator>
+   template <typename InputIterator>
    inline InputIterator contains_none(const InputIterator begin, const InputIterator end) const
    {
       InputIterator itr = begin;
@@ -515,16 +516,16 @@ protected:
                    predef_salt + salt_count_,
                    std::back_inserter(salt_));
 
-          for (std::size_t i = 0; i < salt_.size(); ++i)
-          {
+         for (std::size_t i = 0; i < salt_.size(); ++i)
+         {
             /*
-              Note:
-              This is done to integrate the user defined random seed,
-              so as to allow for the generation of unique bloom filter
-              instances.
+               Note:
+               This is done to integrate the user defined random seed,
+               so as to allow for the generation of unique bloom filter
+               instances.
             */
             salt_[i] = salt_[i] * salt_[(i + 3) % salt_.size()] + static_cast<bloom_type>(random_seed_);
-          }
+         }
       }
       else
       {
@@ -694,7 +695,7 @@ public:
          *(itr_tmp++) |= (*itr++);
       }
 
-      std::swap(bit_table_,tmp);
+      std::swap(bit_table_, tmp);
 
       size_list.push_back(new_table_size);
 
@@ -726,7 +727,7 @@ private:
   If it can be guaranteed that bits_per_char will be of the form 2^n then
   the following optimization can be used:
 
-  hash_table[bit_index >> n] |= bit_mask[bit_index & (bits_per_char - 1)];
+  bit_table_[bit_index >> n] |= bit_mask[bit_index & (bits_per_char - 1)];
 
   Note 2:
   For performance reasons where possible when allocating memory it should
